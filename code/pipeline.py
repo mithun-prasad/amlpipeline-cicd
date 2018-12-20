@@ -75,8 +75,8 @@ anomaly_data = PipelineData("anomaly_data", datastore=def_blob_store)
 print("Anomaly data object created")
 
 
-anom_detect = PythonScriptStep(name="code/anomaly_detection",
-                               script_name="anom_detect.py",
+anom_detect = PythonScriptStep(name="anomaly_detection",
+                               script_name="code/anom_detect.py",
                                arguments=["--output_directory", anomaly_data],
                                outputs=[anomaly_data],
                                compute_target=aml_compute, 
@@ -86,8 +86,8 @@ anom_detect = PythonScriptStep(name="code/anomaly_detection",
 print("Anomaly Detection Step created.")
 
 
-automl_train = PythonScriptStep(name="code/automl_train",
-                                script_name="automl_train.py", 
+automl_train = PythonScriptStep(name="automl_train",
+                                script_name="code/automl_train.py", 
                                 arguments=["--input_directory", anomaly_data],
                                 inputs=[anomaly_data],
                                 compute_target=aml_compute, 
