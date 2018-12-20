@@ -156,12 +156,12 @@ automl_config = AutoMLConfig(task='classification',
 
 
 
-run = experiment.submit(automl_config, show_output=True)
-best_run, fitted_model = run.get_output()
+automl_run = experiment.submit(automl_config, show_output=True)
+best_run, fitted_model = automl_run.get_output()
 
 best_accuracy = best_run.get_metrics()['accuracy']
 print("Best run accuracy:", best_accuracy)
-run.log('accuracy', best_accuracy)
+automl_run.log('accuracy', best_accuracy)
 
 # fitted_model = Pipeline([('scaler', StandardScaler()), ('classifier', MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(5, 10), random_state=1))])
 # fitted_model.fit(X_train, y_train)
